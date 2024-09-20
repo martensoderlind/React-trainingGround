@@ -15,7 +15,7 @@ const data = [
 
 const TrainingGraph =()=>{
     return(
-        <div style={{width:'100%', height: 300}}>
+        <div style={{width:'80%', height: 300}}>
             <ResponsiveContainer>
                 <LineChart
                 data={data}
@@ -40,7 +40,7 @@ const TrainingGraph =()=>{
 
 const MainPlot = ()=>{
     return (
-    <div>
+    <div class="mainContainer">
         <h3>Träningsstatistik</h3>
         <TrainingGraph />
     </div>
