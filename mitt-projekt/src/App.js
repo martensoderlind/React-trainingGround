@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import MyHeader from './header.js'
+import MainPlot from './mainPlot.js'
 
 
 function MyButton(){
@@ -13,14 +14,11 @@ function MyButton(){
   )
 }
 
-
-
 function App() {
   return (
     <div className="App">
-      <h1>test av app</h1>  
       <MyHeader />
-      <MyButton />
+      <MainPlot />
     </div>
   );
 }
