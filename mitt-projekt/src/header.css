@@ -1,0 +1,30 @@
+.header{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    padding: 10PX;
+    justify-content:  space-around;
+    align-items: center;
+}
+.headerbutton{
+    cursor: pointer;
+    all: unset; 
+    /* background-color: rgb(255, 255, 255); */
+    border-radius: 10px;  
+    margin: 0 5px;
+    width: auto ;
+    padding: 3px 6px;
+}
+.headerbutton:hover{
+    border-bottom: solid orange;
+    background-color: rgb(245, 234, 221);
+    cursor: pointer;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+svg{
+    margin: 0 15px;
+}
