@@ -3,7 +3,6 @@ import './App.css';
 import MyHeader from './header.js'
 import MainPlot from './mainPlot.js'
 
-
 function MyButton(){
   return(
     <div>

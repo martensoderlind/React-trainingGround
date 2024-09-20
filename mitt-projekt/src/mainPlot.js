@@ -1,4 +1,5 @@
 import './mainPlot.css';
+import React,{useState} from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -19,7 +20,7 @@ const CustomTooltip = ({active, payload, label})=>{
             <div className="custom-tooltip" style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc' }}>
                 <p className=''>{`Datum: ${label}`}</p>
                 <p className=''>{`Distance: ${payload[0].value} km`}</p>
-                <p className=''>{`Tid: ${data.time || 'N/A'}`}</p>
+                <p className=''>{`Tid: ${data.time}`}</p>
             </div>
         );
     };
@@ -49,11 +50,76 @@ const TrainingGraph =()=>{
     );
 };
 
+const AddSession = ()=>{
+    const [runningData, setRunningData] = useState(data);
+    const [newRunningData, setNewRun] = useState(data);
+
+    const handleNewInput =(e)=>{
+        const {name, value} = e.target;
+        setNewRun(prev =>({...prev, [name]:value}));
+        console.log(name, value)
+    };
+
+    const handleSubmit = (e)=>{
+        if(newRunningData.date && newRunningData.dist && newRunningData.time){
+            setRunningData(prev => [...prev,{...newRunningData, distance: parseFloat(newRunningData.distance)}]);
+            setNewRun({date: '', dist:'', time:''});
+        }else{
+            console.log("fyll i all data");
+        };
+    };
+
+    return(
+    <div>
+        <h2 className="">Lägg till pass</h2>
+      
+      <form onSubmit={handleSubmit} className="">
+        <div className="inputs">
+          <input
+            type="date"
+            name="date"
+            value={newRunningData.date}
+            onChange={handleNewInput}
+            className="input"
+            required
+          />
+          <input
+            type="number"
+            name="distance"
+            value={newRunningData.dist}
+            onChange={handleNewInput}
+            placeholder="Distans (km)"
+            step="0.1"
+            className="input"
+            required
+          />
+          <input
+            type="time"
+            name="time"
+            value={newRunningData.time}
+            onChange={handleNewInput}
+            step="1"
+            className="input"
+            required
+          />
+          <button type="submit" className="">Submit</button>
+        </div>
+      </form>
+    </div>
+    )
+
+};
+
 const MainPlot = ()=>{
     return (
-    <div class="mainContainer">
-        <h3>Träningsstatistik</h3>
-        <TrainingGraph />
+    <div>
+        <div className='newInput'>
+            <AddSession />
+        </div>    
+        <div className="mainContainer">
+            <h3>Träningsstatistik</h3>
+            <TrainingGraph />
+        </div>
     </div>
     );
 };

@@ -5,3 +5,23 @@
     border-radius: 20px;
     padding: 5px;
 }
+
+.newInput{
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    margin: 10px 10%;
+    border-radius: 20px;
+    padding: 5px;
+}
+.inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input{
+    all: unset;
+    margin: 0 5px 5px 5px;
+    background-color: rgb(233, 232, 232);
+    padding: 3px;
+    border-radius:5px ;
+}
