@@ -12,6 +12,18 @@ const data = [
     {date: "2024-09-17", dist: 9.5, time: "00:50:00"}
 ];
 
+const CustomTooltip = ({active, payload, label})=>{
+    if(active && payload && payload.length){
+        const data = payload[0].payload;
+        return(
+            <div className="custom-tooltip" style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc' }}>
+                <p className=''>{`Datum: ${label}`}</p>
+                <p className=''>{`Distance: ${payload[0].value} km`}</p>
+                <p className=''>{`Tid: ${data.time || 'N/A'}`}</p>
+            </div>
+        );
+    };
+}
 
 const TrainingGraph =()=>{
     return(
@@ -24,12 +36,11 @@ const TrainingGraph =()=>{
                     right: 30,
                     left: 20,
                     bottom: 5,
-                }}
-                >
+                }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />
-                    <YAxis dataKey="dist"/>
-                    <Tooltip dataKey="time"/>
+                    <YAxis />
+                    <Tooltip content={<CustomTooltip/>}/>
                     <Legend />
                     <Line type="monotone" dataKey="dist" stroke="#8884d8" activeDot={{ r: 8 }} />   
                 </LineChart>
