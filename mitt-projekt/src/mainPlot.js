@@ -29,7 +29,7 @@ const CustomTooltip = ({active, payload, label})=>{
 const TrainingGraph =({trainingData})=>{
     console.log(trainingData);
     return(
-        <div style={{width:'100%', height: 300}} className="ml-2">
+        <div style={{width:'90%', height: 280}} className="ml-2">
             <ResponsiveContainer>
                 <LineChart
                 data={trainingData}
@@ -117,13 +117,13 @@ const MainPlot = ()=>{
     };
 
     return (
-        <div className='px-2 w-4/5 ml-1'>
+        <div className='px-2 w-11/12 ml-1'>
             <div className='newInput'>
                 <AddSession submit = {updateRunningdata} />
             </div>    
-            <div className="mainContainer">
+            <div className="mainContainer w-11/12 shadow-xl">
                 <h3 className="font-bold">Träningsstatistik</h3>
-                <TrainingGraph trainingData={runningData}/>
+                <TrainingGraph className="" trainingData={runningData}/>
             </div>
         </div>
     );

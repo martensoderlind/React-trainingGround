@@ -1,0 +1,9 @@
+Att göra
+-kalender för att se planerade och tidigare pass
+-skapa komponent visuellt -klart
+-funktioner
+    -uppdatera datum -klart
+    -visa upp inlagda pass
+        -planerade
+        -avklarade
+        -ej genomförda
