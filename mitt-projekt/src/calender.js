@@ -1,7 +1,12 @@
 import React, {useState} from "react";
 
 const Calender = ()=>{
+    const [currentDate, setCurrentDate] = useState(new Date()); 
 
+    const daysInMonth = new Date(currentDate.getFullYear(),currentDate.getMonth()+1,0).getDate();
+    const firstDayOfMonth = new Date(currentDate.getFullYear(),currentDate.getMonth(),1).getDay();
+    console.log(`dagar i månad: ${daysInMonth}`);
+    console.log(`första dag i månad: ${firstDayOfMonth}`);
 
     return (
         <div className="calenderMain bg-gray-50 rounded-lg ">
@@ -14,7 +19,7 @@ const Calender = ()=>{
             </div>
             <div className="grid grid-cols-7 gap-1 p-4">
                 {['Mån','Tis','Ons','Tors','Fre','Lör','Sön'].map((day)=>(
-                    <div key={day} className="text-center ">
+                    <div key={day} className="text-center font-semibold">
                         {day}
                     </div>
                 ))}
