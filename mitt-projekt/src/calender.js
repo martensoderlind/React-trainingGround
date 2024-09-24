@@ -4,9 +4,20 @@ const Calender = ()=>{
     const [currentDate, setCurrentDate] = useState(new Date()); 
 
     const daysInMonth = new Date(currentDate.getFullYear(),currentDate.getMonth()+1,0).getDate();
-    const firstDayOfMonth = new Date(currentDate.getFullYear(),currentDate.getMonth(),1).getDay();
+    const firstDayOfMonth = new Date(currentDate.getFullYear(),currentDate.getMonth(),0).getDay();
     console.log(`dagar i månad: ${daysInMonth}`);
     console.log(`första dag i månad: ${firstDayOfMonth}`);
+
+    const renderDays = ()=>{
+        const days =[];
+        for(let i=0;i<firstDayOfMonth;i++){
+            days.push(<div key={i-firstDayOfMonth} className="p-2"></div>)
+        };
+        for (let i = 1; i < daysInMonth+1; i++) {
+            days.push(<div key={i} className="p-2">{i}</div>)
+        };
+        return days;
+    };
 
     return (
         <div className="calenderMain bg-gray-50 rounded-lg ">
@@ -23,6 +34,7 @@ const Calender = ()=>{
                         {day}
                     </div>
                 ))}
+                {renderDays()}
             </div>
         </div>
     )
