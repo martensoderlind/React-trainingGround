@@ -26,12 +26,13 @@ const CustomTooltip = ({active, payload, label})=>{
     };
 }
 
-const TrainingGraph =()=>{
+const TrainingGraph =({trainingData})=>{
+    console.log(trainingData);
     return(
         <div style={{width:'100%', height: 300}}>
             <ResponsiveContainer>
                 <LineChart
-                data={data}
+                data={trainingData}
                 margin={{
                     top: 5,
                     right: 30,
@@ -50,30 +51,28 @@ const TrainingGraph =()=>{
     );
 };
 
-const AddSession = ()=>{
-    const [runningData, setRunningData] = useState(data);
-    const [newRunningData, setNewRun] = useState(data);
-
+const AddSession = ({submit})=>{
+    const [newRunningData, setNewRun] = useState({ date: '', dist: '', time: '' });
+    
     const handleNewInput =(e)=>{
-        const {name, value} = e.target;
+        let {name, value} = e.target;
+        if(name==="dist"){
+            value = parseFloat(value);
+        }
         setNewRun(prev =>({...prev, [name]:value}));
-        console.log(name, value)
     };
 
-    const handleSubmit = (e)=>{
+    const handelSubmit=(e)=>{
+        console.log(newRunningData);
+        e.preventDefault();
         if(newRunningData.date && newRunningData.dist && newRunningData.time){
-            setRunningData(prev => [...prev,{...newRunningData, distance: parseFloat(newRunningData.distance)}]);
-            setNewRun({date: '', dist:'', time:''});
-        }else{
-            console.log("fyll i all data");
+            submit(newRunningData);
         };
     };
-
     return(
     <div>
         <h2 className="">Lägg till pass</h2>
-      
-      <form onSubmit={handleSubmit} className="">
+      <form onSubmit={handelSubmit} className="">
         <div className="inputs">
           <input
             type="date"
@@ -85,7 +84,7 @@ const AddSession = ()=>{
           />
           <input
             type="number"
-            name="distance"
+            name="dist"
             value={newRunningData.dist}
             onChange={handleNewInput}
             placeholder="Distans (km)"
@@ -111,16 +110,22 @@ const AddSession = ()=>{
 };
 
 const MainPlot = ()=>{
+    const [runningData, setRunningData] = useState(data);
+
+    const updateRunningdata=(newRunningData) =>{
+        setRunningData(prev =>{return [...prev,newRunningData]});
+    };
+
     return (
-    <div>
-        <div className='newInput'>
-            <AddSession />
-        </div>    
-        <div className="mainContainer">
-            <h3>Träningsstatistik</h3>
-            <TrainingGraph />
+        <div>
+            <div className='newInput'>
+                <AddSession submit = {updateRunningdata} />
+            </div>    
+            <div className="mainContainer">
+                <h3>Träningsstatistik</h3>
+                <TrainingGraph trainingData={runningData}/>
+            </div>
         </div>
-    </div>
     );
 };
 

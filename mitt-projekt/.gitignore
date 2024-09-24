@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+att-göra.txt
 # testing
 /coverage
 test.js
