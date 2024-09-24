@@ -71,7 +71,7 @@ const AddSession = ({submit})=>{
     };
     return(
     <div className="ml-1">
-        <h2 className="">Lägg till pass</h2>
+        <h2 className="font-bold p-2">Lägg till pass</h2>
       <form onSubmit={handelSubmit} className="">
         <div className="inputs">
           <input
@@ -122,7 +122,7 @@ const MainPlot = ()=>{
                 <AddSession submit = {updateRunningdata} />
             </div>    
             <div className="mainContainer">
-                <h3>Träningsstatistik</h3>
+                <h3 className="font-bold">Träningsstatistik</h3>
                 <TrainingGraph trainingData={runningData}/>
             </div>
         </div>
