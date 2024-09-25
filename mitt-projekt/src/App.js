@@ -3,6 +3,7 @@ import './App.css';
 import MyHeader from './header.js'
 import MainPlot from './mainPlot.js'
 import Calender from './calender.js'
+import Weather from './weather.js'
 
 
 function App() {
@@ -11,7 +12,10 @@ function App() {
       <MyHeader />
       <div className='flex'>
         <MainPlot />
-        <Calender />
+        <div>
+          <Calender />
+          <Weather />          
+        </div>
       </div>
     </div>
   );
