@@ -1,12 +1,11 @@
 import React, {useState} from "react";
+import data from './mainPlot'
 
 const Calender = ()=>{
     const [currentDate, setCurrentDate] = useState(new Date()); 
 
     const daysInMonth = new Date(currentDate.getFullYear(),currentDate.getMonth()+1,0).getDate();
     const firstDayOfMonth = new Date(currentDate.getFullYear(),currentDate.getMonth(),0).getDay();
-    // console.log(`dagar i månad: ${daysInMonth}`);
-    // console.log(`första dag i månad: ${firstDayOfMonth}`);
 
     const prevMonth=()=>{
         setCurrentDate(new Date(currentDate.getFullYear(),currentDate.getMonth()-1,1))
@@ -35,7 +34,6 @@ const Calender = ()=>{
     return (
         <div className="calenderMain bg-gray-50 rounded-lg mx-4 my-2 w-96 h-96 shadow-xl">
             <div className="flex space-x-16 p-2 bg-gray-300 rounded-t-lg">
-                {/* <button className="" onClick={prevMonth}>föregående</button> */}
                 <svg onClick={prevMonth} xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6z"/></svg>
                 <h2 className="font-bold">
                     {renderMonth()}

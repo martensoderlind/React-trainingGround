@@ -129,4 +129,4 @@ const MainPlot = ()=>{
     );
 };
 
-export default MainPlot;
+export default {MainPlot, data};
