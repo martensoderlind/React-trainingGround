@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import data from './data'
+import {data} from './data.js'
 
 const Calender = ()=>{
     const [currentDate, setCurrentDate] = useState(new Date()); 
@@ -10,7 +10,14 @@ const Calender = ()=>{
     const year = currentDate.getFullYear();
     let month = currentDate.getMonth()+1;
     month = month.toString().padStart(2,'0');
+    let day = currentDate.getDate().toString().padStart(2,'0');
+    const todaysDate = `${year}-${month}-${day}`;
 
+    const dateFormat =(datum1,datum2)=>{
+        const d1 = new Date(datum1);
+        const d2 = new Date(datum2);
+        return d1>d2;
+    };
     const prevMonth=()=>{
         setCurrentDate(new Date(currentDate.getFullYear(),currentDate.getMonth()-1,1))
     };
@@ -25,11 +32,20 @@ const Calender = ()=>{
         };
         for (let i = 1; i < daysInMonth+1; i++) {
             if(data.some(item =>item.date ===`${year}-${month}-${i.toString().padStart(2,'0')}`)){
-                days.push(<div className="hover:bg-gray-200 hover:rounded-lg">
-                    <div key={i} className="p-2">{i}</div>
-                    {/* test av markering för aktivitet */}
-                    <svg className="text-green-500 mb-2" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
-                </div>)
+                // console.log(`sparat datum:${data[i-1]}, dagen datum: ${todaysDate}`);
+                if(dateFormat(`${year}-${month}-${i.toString().padStart(2,'0')}`,todaysDate)){
+                    console.log("blå")
+                    days.push(<div className="hover:bg-gray-200 hover:rounded-lg">
+                        <div key={i} className="p-2">{i}</div>
+                        <svg className="text-blue-500 mb-2" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
+                    </div>)
+                }else{
+                    days.push(<div className="hover:bg-gray-200 hover:rounded-lg">
+                        <div key={i} className="p-2">{i}</div>
+                        {/* test av markering för aktivitet */}
+                        <svg className="text-green-500 mb-2" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
+                    </div>)
+                };
             }else{
                 days.push(<div>
                     <div key={i} className="p-2 hover:bg-gray-200 hover: rounded-lg">{i}</div>
