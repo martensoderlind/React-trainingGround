@@ -18,7 +18,6 @@ const CustomTooltip = ({active, payload, label})=>{
 }
 
 const TrainingGraph =({trainingData})=>{
-    console.log(trainingData);
     return(
         <div style={{width:'90%', height: 280}} className="ml-2">
             <ResponsiveContainer>
@@ -54,7 +53,6 @@ const AddSession = ({submit})=>{
     };
 
     const handelSubmit=(e)=>{
-        console.log(newRunningData);
         e.preventDefault();
         if(newRunningData.date && newRunningData.dist && newRunningData.time){
             submit(newRunningData);
