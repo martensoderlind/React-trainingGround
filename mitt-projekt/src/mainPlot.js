@@ -92,7 +92,7 @@ const AddSession = ({submit})=>{
             className="input"
             required
           />
-          <button type="submit" className="">Submit</button>
+          <button type="submit" className="bg-blue-800 p-1 px-2 mb-1 rounded-lg font-semibold text-slate-50 hover:bg-blue-950">Submit</button>
         </div>
       </form>
     </div>
