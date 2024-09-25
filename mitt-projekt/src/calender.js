@@ -34,11 +34,12 @@ const Calender = ()=>{
             if(data.some(item =>item.date ===`${year}-${month}-${i.toString().padStart(2,'0')}`)){
                 // console.log(`sparat datum:${data[i-1]}, dagen datum: ${todaysDate}`);
                 if(dateFormat(`${year}-${month}-${i.toString().padStart(2,'0')}`,todaysDate)){
-                    console.log("blå")
-                    days.push(<div className="hover:bg-gray-200 hover:rounded-lg">
-                        <div key={i} className="p-2">{i}</div>
-                        <svg className="text-blue-500 mb-2" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
-                    </div>)
+                    days.push(
+                        <div className="hover:bg-gray-200 hover:rounded-lg">
+                                <div key={i} className="p-2">{i}</div>
+                                <svg className="text-blue-500 mb-2" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
+                        </div>
+                    );
                 }else{
                     days.push(<div className="hover:bg-gray-200 hover:rounded-lg">
                         <div key={i} className="p-2">{i}</div>
