@@ -7,6 +7,10 @@ const Calender = ()=>{
     const daysInMonth = new Date(currentDate.getFullYear(),currentDate.getMonth()+1,0).getDate();
     const firstDayOfMonth = new Date(currentDate.getFullYear(),currentDate.getMonth(),0).getDay();
 
+    const year = currentDate.getFullYear();
+    let month = currentDate.getMonth()+1;
+    month = month.toString().padStart(2,'0');
+
     const prevMonth=()=>{
         setCurrentDate(new Date(currentDate.getFullYear(),currentDate.getMonth()-1,1))
     };
@@ -20,11 +24,17 @@ const Calender = ()=>{
             days.push(<div key={i-firstDayOfMonth} className="p-2"></div>)
         };
         for (let i = 1; i < daysInMonth+1; i++) {
-            days.push(<div>
-                <div key={i} className="p-2 hover:bg-gray-200">{i}</div>
-                {/* test av markering för aktivitet */}
-                <svg className="text-green-500" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
-            </div>)
+            if(data.some(item =>item.date ===`${year}-${month}-${i.toString().padStart(2,'0')}`)){
+                days.push(<div>
+                    <div key={i} className="p-2 hover:bg-gray-200">{i}</div>
+                    {/* test av markering för aktivitet */}
+                    <svg className="text-green-500" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
+                </div>)
+            }else{
+                days.push(<div>
+                    <div key={i} className="p-2 hover:bg-gray-200">{i}</div>
+                </div>)
+            };
         };
         return days;
     };
