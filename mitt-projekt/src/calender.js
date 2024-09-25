@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import data from './mainPlot'
+import data from './data'
 
 const Calender = ()=>{
     const [currentDate, setCurrentDate] = useState(new Date()); 
@@ -20,7 +20,11 @@ const Calender = ()=>{
             days.push(<div key={i-firstDayOfMonth} className="p-2"></div>)
         };
         for (let i = 1; i < daysInMonth+1; i++) {
-            days.push(<div key={i} className="p-2 hover:bg-gray-200">{i}</div>)
+            days.push(<div>
+                <div key={i} className="p-2 hover:bg-gray-200">{i}</div>
+                {/* test av markering för aktivitet */}
+                <svg className="text-green-500" xmlns="http://www.w3.org/2000/svg" width="0.4em" height="0.4em" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14" clip-rule="evenodd"/></svg>
+            </div>)
         };
         return days;
     };
