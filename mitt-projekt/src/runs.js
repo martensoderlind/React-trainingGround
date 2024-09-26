@@ -10,5 +10,13 @@ function PrevRuns(){
     )
 
 };
+function PlannedRuns(){
 
-export default PrevRuns;
+    return(
+        <div>
+            planned
+        </div>
+    )
+};
+
+export  {PrevRuns, PlannedRuns};

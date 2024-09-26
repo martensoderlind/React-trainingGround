@@ -4,21 +4,25 @@ import MyHeader from './header.js'
 import MainPlot from './mainPlot.js'
 import Calender from './calender.js'
 import Weather from './weather.js'
-import PrevRuns from './runs.js'
+import {PrevRuns, PlannedRuns} from './runs.js'
 
 
 function App() {
-  const [showPlot,setShowPlot] = useState(true);
-  
-  const toggleView = ()=>{
-    setShowPlot(!showPlot);
-  };
+  const [currentView,setCurrentView] = useState('plannedRuns');
 
+  const view ={
+    'home':MainPlot,
+    'plannedRuns':PlannedRuns,
+    'prevRuns':PrevRuns
+  }
+
+  const CurrentView = view[currentView];
+  // console.log(`view: ${view[currentView]}`); 
   return (
     <div className="App">
-      <MyHeader view={toggleView}/>
+      <MyHeader view={setCurrentView}/>
       <div className='flex'>
-        {showPlot ? <MainPlot />:<PrevRuns />}
+          <CurrentView />
         <div>
           <Calender />
           <Weather />          
