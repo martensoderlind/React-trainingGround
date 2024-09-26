@@ -14,7 +14,8 @@ async function getWeatherData() {
             temp: data.current.temp_c,
             condition: data.current.condition.text,
             conditionIcon: data.current.condition.icon,
-            wind: data.current.wind_kph
+            wind: data.current.wind_kph,
+            time: data.location.localtime
         };
         return weatherData;
     }catch(error){
@@ -39,12 +40,14 @@ function Weather(){
     }
     
     return(
-        <div>
-            <p>Plats: {weather.name}</p>
-            <p>Temperatur: {weather.temp} °C</p>
-            <p>Väderförhållanden: {weather.condition}</p>
-            <img src={weather.conditionIcon} alt="Weather icon" />
-            <p>Vind: {weather.wind} kph</p>
+        <div className='flex bg-gray-100 rounded-lg w-96 ml-4 h-48 shadow-xl'>
+            <div className='p-2'>
+                <h1 className=' flex font-semibold text-xl'>{weather.name}</h1>
+                <h2 className=' flex font-semibold'>Temperatur: <p className='font-normal pl-2'> {weather.temp} °C</p></h2>
+                <h2 className=' flex font-semibold'>Väderförhållanden: <p className='font-normal pl-2'> {weather.condition}</p></h2>
+                <h2 className=' flex font-semibold'>Vind: <p className='font-normal pl-2'> {weather.wind} kph</p></h2>
+            </div>
+            <img src={weather.conditionIcon} alt="Weather icon" className=''/>
         </div>
     );
 }
