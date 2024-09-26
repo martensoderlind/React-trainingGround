@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 att-göra.txt
+
+src/apiKey.js
 # testing
 /coverage
 test.js
