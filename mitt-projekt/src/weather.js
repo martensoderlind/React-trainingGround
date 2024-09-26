@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import url from './apiKey.js'
+import url from './config.js'
 
 async function getWeatherData(url) {
     try{
@@ -25,19 +25,26 @@ async function getWeatherData(url) {
 
 function Weather(){
     const [weather,setWeather] =useState(null);
-    
+    const [loading, setLoading] = useState(true);
+
     useEffect(()=>{
         const fetchWeather = async ()=>{
+            setLoading(true);
             const weatherData = await getWeatherData(url);
             setWeather(weatherData);
+            setLoading(false);
         };
         fetchWeather();
 
     },[]);
 
-    if(!weather) {
+    if(loading) {
         return <div>Loading...</div>
-    }
+    };
+
+    if(!weather){
+        return <div>Kunde inte hämta väderdata.</div>
+    };
     
     return(
         <div className='flex bg-gray-100 rounded-lg w-96 ml-4 h-48 shadow-xl'>
@@ -46,14 +53,14 @@ function Weather(){
                 <h1 className='text-xs text-start'>{weather.time}</h1>
                 <div className='flex justify-between'>
                     <img src={weather.conditionIcon} alt="Weather icon" className=''/>
-                    <div className='pt-3'>
+                    <div className='self-center'>
                         <h1 className=' flex font-semibold text-end'>{weather.temp} °C</h1>
                         <p className='text-xs pl-2 text-end'>Känns som {weather.feelsLikeTemp} °C</p>
                     </div>
                 </div>
                 
                 <h2 className=' flex font-semibold'>Väderförhållanden: <p className='font-normal pl-2'> {weather.condition}</p></h2>
-                <h2 className=' flex font-semibold'>Vind: <p className='font-normal pl-2'> {weather.wind} kph</p></h2>
+                <h2 className=' flex font-semibold'>Vind: <p className='font-normal pl-2'> {weather.wind} km/t</p></h2>
             </div>
         </div>
     );
