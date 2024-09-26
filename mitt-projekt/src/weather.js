@@ -11,7 +11,7 @@ async function getWeatherData(url) {
         const weatherData={
             name: data.location.name,
             temp: data.current.temp_c,
-            feelsLikeTemp: data.current.condition.feelslike_c,
+            feelsLikeTemp: data.current.feelslike_c,
             condition: data.current.condition.text,
             conditionIcon: data.current.condition.icon,
             wind: data.current.wind_kph,
